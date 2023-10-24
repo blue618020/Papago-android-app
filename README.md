@@ -5,6 +5,7 @@
 ### 🔍 학습 내용
 -  네이버 파파고 번역 API 레퍼런스를 확인하여 사용하기
 -  Volley POST 통신하기
+-  번역 히스토리 확인하기
 
 ### 💻 실습
 -  원본 언어는 'ko'(한국어)로 설정
@@ -38,4 +39,19 @@
     -  target : 유저가 선택한 라디오 버튼 정보
     -  text : 유저가 입력한 텍스트
  
--  
+-  번역결과는 message > result > translatedText 순으로 들어있기 때문에, 이중 Json 파싱하기
+
+              // message > result > translatedText (번역결과)
+
+              try {
+                    JSONObject message = response.getJSONObject("message");
+                    JSONObject result = message.getJSONObject("result");
+                    String translatedText = result.getString("translatedText");
+
+                    txtResult.setText(translatedText);
+   
+-  HTTP 요청 헤더에 클라이언트 아이디와 클라이언트 시크릿을 추가 필수!
+      -  X-Naver-Client-Id : 아이디 값
+      -  X-Naver-Client-Secret : 시크릿 값
+ 
+-  메인에서 intent를 통해 히스토리 엑티비티로 넘어감
