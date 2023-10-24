@@ -54,4 +54,11 @@
       -  X-Naver-Client-Id : 아이디 값
       -  X-Naver-Client-Secret : 시크릿 값
  
--  메인에서 intent를 통해 히스토리 엑티비티로 넘어감
+-  MainActivity에서 intent를 통해 번역결과를 HistoryActivity로 보내줌
+-  받아올 때 historyArrayList 로 전체를 묶어서 addAll 로 리스트 안에 다 추가
+
+         // 번역결과 히스토리 화면에 띄우기
+            historyArrayList.addAll((ArrayList<History>) getIntent().getSerializableExtra("history"));
+   
+-  adapter를 사용해서 리스트 전체를 화면에 띄우기
+  
